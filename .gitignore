@@ -16,6 +16,7 @@
 
 # Debugger Files
 *.pdb
+*.idb
 
 # Compiled Dynamic libraries
 *.so
@@ -31,7 +32,7 @@
 *.lai
 *.la
 *.a
-*.lib
+# *.lib
 
 # Executables
 *.exe
@@ -66,3 +67,33 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+# =========================
+# Visual Studio specific
+# =========================
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.suo
+*.tlog
+*.lastbuildstate
+*.recipe
+*.opendb
+*.db
+*.db-shm
+*.db-wal
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
