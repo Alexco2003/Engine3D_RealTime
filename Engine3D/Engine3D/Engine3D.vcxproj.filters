@@ -16,6 +16,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{e3e8bd79-497c-41f1-9154-9dfc74ff7e69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{017b3463-c3c1-4e80-8853-752fb0b436e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -23,6 +26,27 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneBlank.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneCube.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneModel3DS.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneModelComplexOBJ.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneModelMS3D.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneModelPyramidOBJ.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneModelX.cpp">
+      <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -38,12 +62,15 @@
     <ClInclude Include="Model.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\CubeRender.frag">
+    <None Include="shaders\basic.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shaders\CubeRender.vert">
+    <None Include="shaders\basic.vert">
       <Filter>Shaders</Filter>
     </None>
     <None Include="packages.config" />
