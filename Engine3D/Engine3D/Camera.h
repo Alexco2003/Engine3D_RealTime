@@ -11,7 +11,9 @@ enum Camera_Movement {
     FORWARD,
     BACKWARD,
     LEFT,
-    RIGHT
+    RIGHT,
+    UP,
+	DOWN
 };
 
 // Default camera settings
@@ -62,6 +64,8 @@ public:
         if (direction == BACKWARD) Position -= Front * velocity;
         if (direction == LEFT) Position -= Right * velocity;
         if (direction == RIGHT) Position += Right * velocity;
+        if (direction == UP) Position += WorldUp * velocity;
+        if (direction == DOWN) Position -= WorldUp * velocity;
     }
 
     // Turns the camera when you move the mouse
