@@ -12,6 +12,7 @@
 #include "Camera.h"
 #include "Shader.h"
 #include "Mesh.h"
+#include "Model.h"
 
 // Window dimensions
 const unsigned int SCR_WIDTH = 800;
@@ -43,7 +44,8 @@ int main() {
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // 2. Create the window
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Engine 3D - Cube Render", NULL, NULL);
+    // GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Engine 3D - Cube Render", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Engine 3D - Pyramid Render", NULL, NULL);
     if (window == NULL) {
         std::cout << "Error creating GLFW window" << std::endl;
         glfwTerminate();
@@ -71,34 +73,37 @@ int main() {
     // CREATE OUR SHADER PROGRAM
     Shader ourShader("shaders/CubeRender.vert", "shaders/CubeRender.frag");
 
-    // CREATE CUBE DATA
-    // 8 points (vertices) that make up a cube
-    std::vector<Vertex> cubeVertices = {
-        {{-0.5f, -0.5f, -0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 0: Bottom-Left-Back
-        {{ 0.5f, -0.5f, -0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 1: Bottom-Right-Back
-        {{ 0.5f,  0.5f, -0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 2: Top-Right-Back
-        {{-0.5f,  0.5f, -0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 3: Top-Left-Back
-        {{-0.5f, -0.5f,  0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 4: Bottom-Left-Front
-        {{ 0.5f, -0.5f,  0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 5: Bottom-Right-Front
-        {{ 0.5f,  0.5f,  0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 6: Top-Right-Front
-        {{-0.5f,  0.5f,  0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}  // 7: Top-Left-Front
-    };
+    //// CREATE CUBE DATA
+    //// 8 points (vertices) that make up a cube
+    //std::vector<Vertex> cubeVertices = {
+    //    {{-0.5f, -0.5f, -0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 0: Bottom-Left-Back
+    //    {{ 0.5f, -0.5f, -0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 1: Bottom-Right-Back
+    //    {{ 0.5f,  0.5f, -0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 2: Top-Right-Back
+    //    {{-0.5f,  0.5f, -0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 3: Top-Left-Back
+    //    {{-0.5f, -0.5f,  0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 4: Bottom-Left-Front
+    //    {{ 0.5f, -0.5f,  0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 5: Bottom-Right-Front
+    //    {{ 0.5f,  0.5f,  0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}, // 6: Top-Right-Front
+    //    {{-0.5f,  0.5f,  0.5f}, {0.0f, 0.0f, 0.0f}, {0.0f, 0.0f}}  // 7: Top-Left-Front
+    //};
 
-    // Connect-the-dots instructions (12 triangles total to make 6 square faces)
-    std::vector<unsigned int> cubeIndices = {
-        0, 1, 2, 2, 3, 0, // Back face
-        4, 5, 6, 6, 7, 4, // Front face
-        0, 3, 7, 7, 4, 0, // Left face
-        1, 2, 6, 6, 5, 1, // Right face
-        3, 2, 6, 6, 7, 3, // Top face
-        0, 1, 5, 5, 4, 0  // Bottom face
-    };
+    //// Connect-the-dots instructions (12 triangles total to make 6 square faces)
+    //std::vector<unsigned int> cubeIndices = {
+    //    0, 1, 2, 2, 3, 0, // Back face
+    //    4, 5, 6, 6, 7, 4, // Front face
+    //    0, 3, 7, 7, 4, 0, // Left face
+    //    1, 2, 6, 6, 5, 1, // Right face
+    //    3, 2, 6, 6, 7, 3, // Top face
+    //    0, 1, 5, 5, 4, 0  // Bottom face
+    //};
 
-    // Empty textures for now
-    std::vector<Texture> emptyTextures;
+    //// Empty textures for now
+    //std::vector<Texture> emptyTextures;
 
-    // Create the actual Mesh object
-    Mesh myCube(cubeVertices, cubeIndices, emptyTextures);
+    //// Create the actual Mesh object
+    //Mesh myCube(cubeVertices, cubeIndices, emptyTextures);
+
+    // LOAD 3D MODEL WITH ASSIMP
+    Model myModel("models/pyramid.obj");
 
     // 4. THE RENDER LOOP
     while (!glfwWindowShouldClose(window)) {
@@ -137,8 +142,11 @@ int main() {
         glm::mat4 model = glm::mat4(1.0f); // Identity matrix = place it at 0,0,0
         ourShader.setMat4("model", model);
 
-        // DRAW THE CUBE
-        myCube.Draw(ourShader);
+        //// DRAW THE CUBE
+        //myCube.Draw(ourShader);
+
+        // DRAW THE MODEL
+        myModel.Draw(ourShader);
 
         // Swap the front and back buffers (shows the frame we just drew) and check for events
         glfwSwapBuffers(window);

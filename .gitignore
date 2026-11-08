@@ -97,3 +97,7 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
+*.nupkg
+*.p7s
+
+!**/models/*.obj
