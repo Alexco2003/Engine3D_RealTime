@@ -101,3 +101,6 @@ bld/
 *.p7s
 
 !**/models/*.obj
+
+# SVN
+.svn/
